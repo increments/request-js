@@ -47,8 +47,15 @@ request("POST", "/api/endpoint", {
 
 ```ts
 // Declare type of response.data
-request<{ users: { name: string }[] }>("GET", "/users")
+request<
+  { users: { name: string }[] },
+  { errors: { message: string }[] }
+>("GET", "/users")
   .then(response => {
-    console.log(response.data.users[0].name) // Show first user's name.
+    if (response.isSuccess) {
+      console.log(response.data.users[0].name) // Show first user's name.
+    } else {
+      console.log(response.data.errors[0].message) // Show first error message.
+    }
   })
 ```
