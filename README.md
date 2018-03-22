@@ -2,8 +2,8 @@
 
 [![NPM version](http://img.shields.io/npm/v/@increments/request.svg)](https://www.npmjs.com/package/@increments/request)
 [![Build Status](https://travis-ci.org/increments/request-js.svg?branch=master)](https://travis-ci.org/increments/request-js)
-[![Maintainability](https://api.codeclimate.com/v1/badges/456eb6c2b8dc26ff88bb/maintainability)](https://codeclimate.com/github/increments/request-js/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/456eb6c2b8dc26ff88bb/test_coverage)](https://codeclimate.com/github/increments/request-js/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/dca6d5ac58fdbf205834/maintainability)](https://codeclimate.com/github/increments/request-js/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/dca6d5ac58fdbf205834/test_coverage)](https://codeclimate.com/github/increments/request-js/test_coverage)
 [![Stable Release Size](http://img.badgesize.io/https://unpkg.com/@increments/request/dist/request.es5.min.js?compression=gzip)](https://github.com/ngryman/badge-size)
 
 Minimalistic XHR wrapper. Zero dependency.
