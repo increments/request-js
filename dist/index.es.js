@@ -5,16 +5,14 @@ function setDefaultHeaders(headers) {
     });
 }
 class Response {
-    constructor(xhr, config) {
+    constructor(xhr, config, isSuccess) {
         this.data = this.parseResponse(xhr.response);
         this.status = xhr.status;
         this.statusText = xhr.statusText;
         this.headers = this.parseHeaders(xhr.getAllResponseHeaders().split("\n"));
         this.request = xhr;
         this.config = config;
-    }
-    isSuccess() {
-        return 200 <= this.status && this.status < 300;
+        this.isSuccess = isSuccess;
     }
     parseResponse(data) {
         if (typeof data === "string") {
@@ -81,7 +79,7 @@ function request(method, url, config = {}) {
         xhr.open(method, config.params ? buildUrl(url, config.params) : url, true);
         xhr.onload = () => {
             if (xhr) {
-                resolve(new Response(xhr, config));
+                resolve(new Response(xhr, config, 200 <= xhr.status && xhr.status < 300));
                 xhr = null; // Clean up to fix circular reference in order to avoid memory leak
             }
         };

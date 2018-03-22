@@ -8,19 +8,16 @@ describe("request", () => {
   it("resolves a response for 200 OK", async done => {
     expect.assertions(4)
 
-    mock.get(
-      "/api/users?format=json&date=2017-03-13T15%3A00%3A00.000Z",
-      (req, res) => {
-        expect(req.header("Content-Type")).toEqual(
-          "application/json;charset=UTF-8",
-        )
-        expect(req.header("Accept")).toEqual("application/json")
-        return res
-          .status(200)
-          .body('{"users":[{"name":"yuku"}]}')
-          .headers({ foo: "bar" })
-      },
-    )
+    mock.get("/api/users?format=json", (req, res) => {
+      expect(req.header("Content-Type")).toEqual(
+        "application/json;charset=UTF-8",
+      )
+      expect(req.header("Accept")).toEqual("application/json")
+      return res
+        .status(200)
+        .body('{"users":[{"name":"yuku"}]}')
+        .headers({ foo: "bar" })
+    })
 
     const response = await request<{ users: { name: string }[] }, null>(
       "GET",
@@ -29,7 +26,6 @@ describe("request", () => {
         params: {
           format: "json",
           foo: null,
-          date: new Date(2017, 2, 14),
         },
         headers: {
           Accept: "application/json",

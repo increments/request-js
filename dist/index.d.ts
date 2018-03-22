@@ -14,17 +14,17 @@ export interface Config {
 export declare function setDefaultHeaders(headers: {
     [key: string]: string;
 }): void;
-export declare class Response<T> {
+export declare class Response<T, S> {
     data: T;
     status: number;
     statusText: string;
     headers: Headers;
     config: Config;
     request: XMLHttpRequest;
-    constructor(xhr: XMLHttpRequest, config: Config);
-    isSuccess(): boolean;
+    isSuccess: S;
+    constructor(xhr: XMLHttpRequest, config: Config, isSuccess: S);
     private parseResponse(data);
     private parseHeaders(lines);
 }
 export declare function buildUrl(url: string, params: Params): string;
-export declare function request<T>(method: "GET" | "DELETE" | "HEAD" | "OPTIONS" | "POST" | "PUT" | "PATCH", url: string, config?: Config): Promise<Response<T>>;
+export declare function request<T = any, F = any>(method: "GET" | "DELETE" | "HEAD" | "OPTIONS" | "POST" | "PUT" | "PATCH", url: string, config?: Config): Promise<Response<T, true> | Response<F, false>>;
