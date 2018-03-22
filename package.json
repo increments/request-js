@@ -1,0 +1,50 @@
+{
+  "name": "@increments/request",
+  "version": "0.0.0",
+  "description": "Minimalistic XHR wrapper",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": "git@github.com:increments/request-js.git",
+  "author": "Yuku TAKAHASHI <yuku@qiita.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "(rm -fr dist || true) && rollup -c",
+    "diff-check": "git diff --check --quiet",
+    "format": "run-s format:tslint format:prettier",
+    "format:prettier": "prettier --no-semi --trailing-comma all --parser typescript --write 'src/*.ts'",
+    "format:tslint": "tslint --fix -p .",
+    "jest": "jest",
+    "lint": "run-p lint:*",
+    "lint:prettier": "prettier --no-semi --trailing-comma all -l --parser typescript 'src/*.ts' || (echo 'Need to run `yarn run format`' && exit 1)",
+    "lint:tslint": "tslint --project .",
+    "test": "run-s lint jest build diff-check"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.0",
+    "@types/xhr-mock": "^2.0.0",
+    "jest": "^22.4.3",
+    "npm-run-all": "^4.1.2",
+    "prettier": "^1.11.1",
+    "rollup": "^0.57.1",
+    "rollup-plugin-typescript2": "^0.12.0",
+    "rollup-plugin-uglify": "^3.0.0",
+    "ts-jest": "^22.4.2",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.10.0",
+    "typescript": "^2.7.2",
+    "xhr-mock": "^2.3.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "testMatch": [
+      "**/?(*.)test.ts"
+    ],
+    "transform": {
+      "^.+\\.ts$": "./node_modules/ts-jest/preprocessor.js"
+    },
+    "collectCoverage": true
+  }
+}
